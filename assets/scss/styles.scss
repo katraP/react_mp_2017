@@ -1,0 +1,64 @@
+$base-size: 5px;
+$base-border: 1px solid #999;
+
+
+$blue: #1a9cb0;
+
+.container {
+    width: 900px;
+    margin: auto;
+}
+
+.header {
+    &-search {
+
+        &-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &-progress-bar {
+        height: $base-size * 2.5;
+        border: $base-border;
+
+        &__process {
+            height: 100%;
+            background-color: $blue;
+        }
+    }
+
+    &-add-item {
+
+        &-wrap {
+            padding: #{$base-size * 4} 0;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+.main {
+    display: flex;
+    align-items: flex-start;
+}
+
+.category {
+    border: $base-border;
+    color: $blue;
+
+    &-wrap {
+        width: $base-size * 50;
+    }
+
+    &__add, &__del {
+        float: right;
+    }
+}
+
+.task {
+    &-wrap {
+
+    }
+}

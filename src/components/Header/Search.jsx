@@ -7,7 +7,7 @@ function Search(props) {
         <input type="checkbox"/> Show done
       </label>
 
-      <input type="text" placeholder="Search"/>
+      <input type="text" placeholder="Search" className="header-search__field"/>
     </div>
   )
 }

@@ -1,8 +1,15 @@
 $base-size: 5px;
 $base-border: 1px solid #999;
 
-
+$red:  #ff004c;
 $blue: #1a9cb0;
+$green:#05aa6b;
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 .container {
     width: 900px;
@@ -16,6 +23,10 @@ $blue: #1a9cb0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        &__field {
+            margin-left: 10px;
         }
     }
 
@@ -42,23 +53,86 @@ $blue: #1a9cb0;
 .main {
     display: flex;
     align-items: flex-start;
+    padding-top: 30px;
 }
 
 .category {
     border: $base-border;
+    border-top: none;
     color: $blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
 
     &-wrap {
         width: $base-size * 50;
+        border-top: $base-border;
     }
 
     &__add, &__del {
-        float: right;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+    }
+
+    &__add {
+        color: $green;
+        font-size: 24px;
+        position: relative;
+        top: $base-size - 2 ;
+    }
+
+    &__del {
+        color: $red;
+    }
+
+    &__edit {
+        cursor: pointer;
+        margin-left: 5px;
+        background-color: transparent;
+        border: none;
+        width: 16px;
+        height: 16px;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjMxRjkwNzAzMThBNjExRTc4MEM0QTM4MTMzRTM2MzI4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjMxRjkwNzA0MThBNjExRTc4MEM0QTM4MTMzRTM2MzI4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MzFGOTA3MDExOEE2MTFFNzgwQzRBMzgxMzNFMzYzMjgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MzFGOTA3MDIxOEE2MTFFNzgwQzRBMzgxMzNFMzYzMjgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz77StT1AAACv0lEQVR42lRTTU8UQRCt6u5ZmR2WXVx3VwwhZteD/gUvRiIHEy96UJGQYAzGH2DixXjh5MG7EGOiByRR4tkEY+JP8IbESFBgEYH9mmV2ZrrL6plFsTM9me5UvXr16g1emRhHIEO8IV2CN/HDG+2ZX0JIikMdRTE4p8YeSqXK1Pz1yEQBKRDSE0MjzwHFOUAc5gRGIgblzW+ZyVK7vvHY+PvLqlSdF17hPkoHpONeooMflxWXGIBMdgp05IOOvyUUBBKDkTEkVOhvZJV5r0fPL2SGR2bj+tp4FPif1OgFwlzpmUIUXIlL+fsz1Np9x9Bgz8ld3IPIIpZrL9RA7p7uNhrg5u4CSs/EMYhed13Zfm2rhKLYT8TkIg6JwQFL1dfg5qd1fXUCTLyCpRqpwdK0GzbnD/29p4JYLLsTtRIAoUBrRhW28iJ6hWm98/UOM1wBtzCOQvY83X6lDzYfxKz9keSp6naR1kly6ewCukOTent1ijp7b0SpegMLlY/ShJu93z9n/G6X9XekSGii6M+Ll2ZcN38Vs4VZXV+bpPbuoixVJ0WuvIxMLI6CraAXglROUltxA5g2IPqzRxDu4GPT9TchPFxSldotypcXo0Z7ThqqYNa5LaTkQjq1SGKg1ERWDDAsAagTFxnvjKzUdjA/shQGrZemtf4EoZsBEt4/k3Eof6Un0nyvwfFO3iTHBYqCXYrCL9T5voBB563ikZKTOc2RMRxbKtUA7TCRHWs7qOtm/Rp1Gx94bDEazUHSWtKWirnVfsFUtb4GiROaxMFRY/szezAVlgH5P2BmxoprWQYp62MMkn44EVSmCgNDYzxnhX0nQuKRBIzFYdWEKjJImJT/qwGitsHoFedwsDiX+iEFQDgyGaZtWlZhd+t/Bkb71Nq5zhF57s9JAMhYBBZcUP8sKO29w7rUOU8eUfgjwADtBFsSnYeItQAAAABJRU5ErkJggg==);
+    }
+}
+
+.sub-category {
+    border: $base-border;
+    border-top: none;
+    width: 90%;
+    margin-left: 10%;
+
+
+    .category {
+        border: none;
+        border-top: $base-border;
+
+        &:first-child {
+            border-top: none;
+        }
+
     }
 }
 
 .task {
-    &-wrap {
+    border: $base-border;
+    border-top: none;
+    padding: 20px 15px;
+    display: flex;
+    justify-content: space-between;
 
+    &:first-child {
+        border-top: $base-border;
+    }
+
+    &-wrap {
+        width: $base-size * 130;
+        padding-left: 30px;
+    }
+
+    &__edit {
+        @extend .category__edit;
     }
 }

@@ -1,27 +1,60 @@
 import React, {Component} from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Header from './Header.jsx'
+import Search from '../components/Header/Search.jsx';
+import ProgressBar from '../components/Header/ProgressBar.jsx';
+import AddItem from '../components/Header/AddItem.jsx';
 import CategoryList from './CategoryList.jsx'
-import TaskList from './TaskList.jsx'
+
 
 class TodoList extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {categoryCounter: 6, categories: this.props.config.categories};
 
-    this.state = {activeCategory: 0};
-    this.data = this.props.config.data;
+    this.getNewCategory = this.getNewCategory.bind(this);
+  }
+
+  getNewCategory(value) {
+    const categories = this.state.categories;
+    let counter = this.state.categoryCounter;
+
+    categories.unshift(
+      {
+        id: ++counter,
+        isActive: false,
+        isDone: false,
+        title: value,
+        subCategories: [],
+        tasks: []
+      }
+    );
+    this.setState({
+      categoryCounter: counter,
+      categories
+    });
+
   }
 
   render() {
+    const _this = this;
+
     return (
-      <div>
-        <Header />
-        <div className="main">
-          <CategoryList data={this.data.categories}/>
-          <TaskList data={this.data.categories[this.state.activeCategory].tasks} />
+      <Router>
+        <div>
+          <div className="header">
+            <div className="header-search-wrap">
+              <h1 className="header__title">To-Do List</h1>
+              <Search />
+            </div>
+            <ProgressBar />
+          </div>
+          <Route path="/" component= {({ params } ) => {
+            return <CategoryList data = {_this.state.categories} getNewCategory = {_this.getNewCategory}/>
+          }} />
         </div>
-      </div>
+      </Router>
     )
   }
 }

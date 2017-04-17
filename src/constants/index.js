@@ -1,6 +1,6 @@
-const data = {
-  categories: [
+const categories = [
     {
+      id: '1',
       isActive: true,
       isDone: false,
       title: 'Category1',
@@ -25,11 +25,13 @@ const data = {
       ]
     },
     {
+      id: '2',
       isActive: false,
       isDone: false,
       title: 'Category2',
       subCategories: [
         {
+          id: '2.1',
           isActive: false,
           isDone: false,
           title: 'Category2.1',
@@ -53,6 +55,7 @@ const data = {
           ]
         },
         {
+          id: '2.2',
           isActive: false,
           isDone: false,
           title: 'Category2.2',
@@ -87,7 +90,6 @@ const data = {
         }
       ]
     }
-  ]
-}
+  ];
 
-export default data;
+export default categories;

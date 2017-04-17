@@ -13,7 +13,7 @@ function Header(props) {
       </div>
       <ProgressBar />
       <div className="header-add-item-wrap">
-        <AddItem placeholder="Enter category title"/>
+        <AddItem getNewCategory = {props.getNewCategory} placeholder="Enter category title"/>
         <AddItem placeholder="Text input with button" />
       </div>
     </div>

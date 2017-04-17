@@ -42,6 +42,8 @@ $green:#05aa6b;
 
     &-add-item {
 
+        margin: $base-size * 6 0;
+
         &-wrap {
             padding: #{$base-size * 4} 0;
             display: flex;
@@ -53,7 +55,6 @@ $green:#05aa6b;
 .main {
     display: flex;
     align-items: flex-start;
-    padding-top: 30px;
 }
 
 .category {
@@ -123,11 +124,24 @@ $green:#05aa6b;
     display: flex;
     justify-content: space-between;
 
+    &-list {
+        .header-add-item {
+            float: right;
+        }
+    }
+
     &:first-child {
         border-top: $base-border;
     }
 
     &-wrap {
+
+        &:before {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
         width: $base-size * 130;
         padding-left: 30px;
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 class Category extends React.Component {
 
   constructor(props) {
@@ -15,28 +15,25 @@ class Category extends React.Component {
       subCategoriesItems = subCategoriesData.map((item, i) => {
         return (
           <div className="category" key = {i}>
-            <div>
-              {item.title}
-              <button className="category__edit"></button>
-            </div>
-            <div>
-              <button className="category__del">&#10060;</button>
-              <button className="category__add">+</button>
-            </div>
+              <div>
+                <Link to={`/category/${item.id}`}>{item.title}</Link>
+                <button className="category__edit"></button>
+              </div>
+              <div>
+                <button className="category__del">&#10060;</button>
+                <button className="category__add">+</button>
+              </div>
           </div>
+
         );
       });
     }
 
-    console.log(subCategoriesItems);
-
-
-
     return (
       <div>
-        <div  className="category">
+        <div className="category">
           <div>
-            {this.props.data.title}
+            <Link to={`/category/${this.props.data.id}`}>{this.props.data.title}</Link>
             <button className="category__edit"></button>
           </div>
           <div>

@@ -77,7 +77,6 @@ $green:#05aa6b;
 
 .category {
     border: $base-border;
-    border-top: none;
     color: $blue;
     display: flex;
     justify-content: space-between;
@@ -87,6 +86,15 @@ $green:#05aa6b;
     &-wrap {
         width: $base-size * 50;
         border-top: $base-border;
+    }
+
+    &-nested {
+        position: relative;
+        left: 10px;
+
+        .category {
+            border-top: none;
+        }
     }
 
     &__add, &__del {

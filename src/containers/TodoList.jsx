@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route, Link } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 import Search from '../components/Header/Search.jsx';
 import ProgressBar from '../components/Header/ProgressBar.jsx';
 import AddItem from '../components/Header/AddItem.jsx';
 import CategoryList from './CategoryList.jsx'
 
-
+const history = createBrowserHistory();
 class TodoList extends React.Component {
 
   constructor(props) {
@@ -22,7 +23,7 @@ class TodoList extends React.Component {
 
     categories.unshift(
       {
-        id: ++counter,
+        id: (++counter).toString(),
         isActive: false,
         isDone: false,
         title: value,
@@ -41,11 +42,11 @@ class TodoList extends React.Component {
     const _this = this;
 
     return (
-      <Router>
+      <Router history = {history}>
         <div>
           <div className="header">
             <div className="header-search-wrap">
-              <h1 className="header__title">To-Do List</h1>
+              <h1 className="header__title"><Link to="/">To-Do List</Link></h1>
               <Search />
             </div>
             <ProgressBar />

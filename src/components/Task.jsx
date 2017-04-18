@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import { Link } from 'react-router-dom';
+
 class Task extends React.Component {
 
   constructor(props) {
@@ -9,10 +11,12 @@ class Task extends React.Component {
 
   render() {
     return (
-      <div className="task">
-        <label><input type="checkbox" value={this.props.data.title} />{this.props.data.title}</label>
-        <button className="task__edit"></button>
-      </div>
+      <Link to={`/category/${this.props.category}/task/${this.props.data.id}`}>
+        <div className="task">
+          <label><input type="checkbox" disabled value={this.props.data.title} />{this.props.data.title}</label>
+          <button className="task__edit"></button>
+        </div>
+      </Link>
     )
   }
 }

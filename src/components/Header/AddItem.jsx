@@ -8,6 +8,10 @@ class AddItem extends React.Component {
   }
 
   handleChange() {
+    if(!this.elName.value) {
+      return false;
+    }
+
     this.props.getNewCategory(this.elName.value);
     this.elName.value = '';
   }

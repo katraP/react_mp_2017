@@ -1,6 +1,9 @@
 $base-size: 5px;
 $base-border: 1px solid #999;
 
+$modalCatWidth: $base-size * 60;
+$modalCatHeight: $base-size * 60;
+
 $red:  #ff004c;
 $blue: #1a9cb0;
 $green:#05aa6b;
@@ -9,6 +12,21 @@ $green:#05aa6b;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.modal-category {
+    position: absolute;
+    z-index: 2;
+    width: $modalCatWidth;
+    height: $modalCatWidth;
+    padding: $base-size * 4;
+    background-color: #fff;
+    outline: none;
+    left: 50%;
+    top: 50%;
+    margin-left: -#{$modalCatWidth / 2};
+    margin-top:  -#{$modalCatWidth / 2};
+    border: 1px solid #333;
 }
 
 .container {

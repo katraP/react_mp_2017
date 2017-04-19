@@ -15,7 +15,7 @@ npm run build
 ### Run dev server
 
 ```
-npm run start
+npm start
 ```
 
 you can see results on [http://localhost:3000](http://localhost:3000)

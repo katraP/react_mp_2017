@@ -14,11 +14,10 @@ class CategoryList extends React.Component {
     return (
 
       <div className="category-wrap">
-
-        {this.props.data.map((item, i) => {
+        {this.props.data.length ? this.props.data.map((item, i) => {
           return (
-            <div>
-              <Category key = {i} data = {item} />
+            <div key={item.id}>
+              <Category data = {item} />
               {
                 item.subCategories.length ? (
                   <div className="category-nested">
@@ -30,7 +29,7 @@ class CategoryList extends React.Component {
 
             </div>
           )
-        })
+        }) :''
         }
       </div>
     )

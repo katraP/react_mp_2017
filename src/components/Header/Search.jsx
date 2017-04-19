@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function Search(props) {
-  return (
-    <div className="header-search">
-      <label>
-        <input type="checkbox"/> Show done
-      </label>
+class Search extends React.Component{
 
-      <input type="text" placeholder="Search" className="header-search__field"/>
-    </div>
-  )
+  constructor(props) {
+    super(props);
+    this.searchTasks = this.searchTasks.bind(this);
+  }
+
+  searchTasks() {
+
+    this.props.searchTasks(this.searchQuery.value, this.searchTasksStatus.checked);
+  }
+
+  render() {
+    return (
+      <div className="header-search">
+        <label>
+          <input type="checkbox" ref={(input) => {this.searchTasksStatus = input;}} onChange={this.searchTasks}/> Show done
+        </label>
+
+        <input type="text" ref={(input) => {this.searchQuery = input;}}
+               placeholder="Search" onChange={this.searchTasks} className="header-search__field"/>
+      </div>
+    )
+  }
 }
 
 export default Search;

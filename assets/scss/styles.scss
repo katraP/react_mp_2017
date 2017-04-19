@@ -29,6 +29,10 @@ $green:#05aa6b;
     border: 1px solid #333;
 }
 
+.modal-close {
+    float: right;
+}
+
 .container {
     width: 900px;
     margin: auto;
@@ -85,16 +89,12 @@ $green:#05aa6b;
 
     &-wrap {
         width: $base-size * 50;
-        border-top: $base-border;
     }
 
     &-nested {
         position: relative;
         left: 10px;
-
-        .category {
-            border-top: none;
-        }
+        top: -1px;
     }
 
     &__add, &__del {
@@ -151,6 +151,7 @@ $green:#05aa6b;
     justify-content: space-between;
 
     &-list {
+        margin-top: -80px;
         .header-add-item {
             float: right;
         }
@@ -175,4 +176,9 @@ $green:#05aa6b;
     &__edit {
         @extend .category__edit;
     }
+}
+
+
+h3 {
+    margin: 10px 0;
 }

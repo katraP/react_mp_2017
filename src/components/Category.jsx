@@ -12,11 +12,17 @@ class Category extends React.Component {
       <div className="category">
         <div>
           <Link to={`/category/${this.props.data.id}`}>{this.props.data.title}</Link>
-          <button className="category__edit"></button>
+          <Link to={`/category/${this.props.data.id}/edit`}>
+            <button className="category__edit"></button>
+          </Link>
         </div>
         <div>
-          <button className="category__del">&#10060;</button>
-          <button className="category__add">+</button>
+          <Link to={`/category/${this.props.data.id}/del`}>
+            <button className="category__del">&#10060;</button>
+          </Link>
+          <Link to={`/category/${this.props.data.id}/add`}>
+            <button className="category__add">+</button>
+          </Link>
         </div>
       </div>
     )

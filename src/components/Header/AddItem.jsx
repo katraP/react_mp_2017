@@ -12,7 +12,7 @@ class AddItem extends React.Component {
       return false;
     }
 
-    this.props.getNewCategory(this.elName.value);
+    this.props.getNewCategory(this.elName.value, this.props.categoryId, this.props.history || '');
     this.elName.value = '';
   }
 

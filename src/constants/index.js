@@ -4,7 +4,14 @@ const categories = [
       isActive: true,
       isDone: false,
       title: 'Category1',
-      subCategories: [],
+      subCategories: [{
+        id: '1.1',
+        isActive: false,
+        isDone: false,
+        title: 'Category1.1',
+        subCategories: [],
+        tasks: []
+      }],
       tasks: [
         {
           id: '1',

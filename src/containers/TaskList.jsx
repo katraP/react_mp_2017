@@ -7,14 +7,16 @@ class TaskList extends React.Component {
 
   constructor(props) {
     super(props);
-
   }
 
   render() {
-
     return (
       <div className="task-list">
-        <AddItem getNewTask = {this.props.getNewTask} placeholder="Text input with button" />
+        <AddItem
+          getNewCategory = {this.props.addNewTask}
+          categoryId = {this.props.category}
+          placeholder="Enter new task title"
+          history={this.props.history}/>
         <div className="task-wrap">
           {
             !this.props.data.length ? (
@@ -24,7 +26,6 @@ class TaskList extends React.Component {
                 return <Task key = {i} data = {item} category = {this.props.category}/>
               })
           }
-
         </div>
       </div>
     )

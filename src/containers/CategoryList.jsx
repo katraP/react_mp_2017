@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import { Route, Link, Redirect } from 'react-router-dom';
-
 
 import Category from '../components/Category.jsx'
 
@@ -12,7 +10,6 @@ class CategoryList extends React.Component {
 
   render() {
     return (
-
       <div className="category-wrap">
         {this.props.data.length ? this.props.data.map((item, i) => {
           return (
@@ -21,12 +18,11 @@ class CategoryList extends React.Component {
               {
                 item.subCategories.length ? (
                   <div className="category-nested">
-                    <CategoryList  data = {item.subCategories} getNewCategory = {this.props.getNewCategory} />
+                    <CategoryList data = {item.subCategories} />
                   </div>
                 )
                   : ''
               }
-
             </div>
           )
         }) :''
@@ -36,5 +32,7 @@ class CategoryList extends React.Component {
 
   }
 }
+
+
 
 export default CategoryList;

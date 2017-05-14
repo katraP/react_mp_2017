@@ -23,8 +23,6 @@ export function getCategory(categoryParam, allCategories) {
       clickedCategory = clickedCategory[0].subCategories;
     }
 
-
-
   });
   return {
     category: clickedCategory[0],

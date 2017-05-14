@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-
+import { connect } from 'react-redux';
 import Task from '../components/Task.jsx';
 import AddItem from '../components/Header/AddItem.jsx';
+
+import {getCategory} from '../actions';
 
 class TaskList extends React.Component {
 
@@ -10,26 +12,49 @@ class TaskList extends React.Component {
   }
 
   render() {
-    return (
-      <div className="task-list">
-        <AddItem
-          getNewCategory = {this.props.addNewTask}
-          categoryId = {this.props.category}
-          placeholder="Enter new task title"
-          history={this.props.history}/>
-        <div className="task-wrap">
-          {
-            !this.props.data.length ? (
-              'There is no tasks yet...'
-            ) :
-              this.props.data.map((item, i) => {
-                return <Task key = {i} data = {item} category = {this.props.category}/>
-              })
-          }
+
+		if(!this.props.category.tasks.length) {
+			return (
+        <div className="task-list">
+          <AddItem
+            categoryId = {this.props.category.id}
+            placeholder="Enter new task title"
+            history={this.props.history}/>
+          <div className="task-wrap">
+            'There is no tasks yet...'
+          </div>
         </div>
-      </div>
-    )
+
+			)
+		} else {
+			return (
+        <div className="task-list">
+          <AddItem
+            categoryId = {this.props.category.id}
+            placeholder="Enter new task title"
+            history={this.props.history}/>
+          <div className="task-wrap">
+						{
+							this.props.category.tasks.map((item, i) => {
+								return <Task key = {i} data = {item} category = {this.props.category.id}/>
+							})
+						}
+          </div>
+        </div>
+			)
+		}
   }
+
+
 }
 
-export default TaskList;
+
+const mapStateToProps = (state) => ({
+	activeCategoryData: state.activeCategoryData
+});
+
+export default connect(mapStateToProps, {getCategory})(TaskList);
+
+
+
+

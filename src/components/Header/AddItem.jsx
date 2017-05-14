@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import {addTask} from '../../actions';
 class AddItem extends React.Component {
   constructor(props) {
     super(props);
@@ -12,8 +13,31 @@ class AddItem extends React.Component {
       return false;
     }
 
-    this.props.getNewCategory(this.elName.value, this.props.categoryId, this.props.history || '');
-    this.elName.value = '';
+		if(this.props.categoryId) {
+    	this.props.addTask({
+				categoryId: this.props.categoryId,
+				value: this.elName.value
+			});
+
+			this.props.history.push(`/category/${this.props.categoryId}`);
+		}
+		else {
+
+    	let counter = this.props.categoryCounter;
+
+			this.props.addNewCategory({
+				category: {
+					id: (++counter).toString(),
+					isActive: false,
+					isDone: true,
+					title: this.elName.value,
+					subCategories: [],
+					tasks: []
+				},
+				counter: counter
+			});
+		}
+		this.elName.value = '';
   }
 
   render() {
@@ -30,4 +54,8 @@ class AddItem extends React.Component {
   }
 }
 
-export default AddItem;
+const mapStateToProps = (state) => ({
+	categoryCounter: state.categoryCounter,
+});
+
+export default connect(mapStateToProps, {addTask})(AddItem);

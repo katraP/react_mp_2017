@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {addTask} from '../../actions';
 class AddItem extends React.Component {
   constructor(props) {
@@ -9,35 +9,33 @@ class AddItem extends React.Component {
   }
 
   handleChange() {
-    if(!this.elName.value) {
+    if (!this.elName.value) {
       return false;
     }
 
-		if(this.props.categoryId) {
-    	this.props.addTask({
-				categoryId: this.props.categoryId,
-				value: this.elName.value
-			});
+    if (this.props.categoryId) {
+      this.props.addTask({
+        categoryId: this.props.categoryId,
+        value: this.elName.value,
+      });
 
-			this.props.history.push(`/category/${this.props.categoryId}`);
-		}
-		else {
+      this.props.history.push(`/category/${this.props.categoryId}`);
+    } else {
+      let counter = this.props.categoryCounter;
 
-    	let counter = this.props.categoryCounter;
-
-			this.props.addNewCategory({
-				category: {
-					id: (++counter).toString(),
-					isActive: false,
-					isDone: true,
-					title: this.elName.value,
-					subCategories: [],
-					tasks: []
-				},
-				counter: counter
-			});
-		}
-		this.elName.value = '';
+      this.props.addNewCategory({
+        category: {
+          id: (++counter).toString(),
+          isActive: false,
+          isDone: true,
+          title: this.elName.value,
+          subCategories: [],
+          tasks: []
+        },
+        counter: counter
+      });
+    }
+    this.elName.value = '';
   }
 
   render() {
@@ -46,16 +44,18 @@ class AddItem extends React.Component {
         <input
           type="text"
           placeholder={this.props.placeholder}
-          ref={(input) => { this.elName = input; }}
+          ref={(input) => {
+            this.elName = input;
+          }}
         />
         <button onClick={this.handleChange} type="button">Add</button>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
-	categoryCounter: state.categoryCounter,
+  categoryCounter: state.categoryCounter,
 });
 
 export default connect(mapStateToProps, {addTask})(AddItem);

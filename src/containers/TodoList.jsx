@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { Router, Route, Link, Switch } from 'react-router-dom';
@@ -19,37 +19,30 @@ const history = createBrowserHistory();
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
     return (
 
-      <Router history = {history}>
+      <Router history={history}>
         <div>
           <div className="header">
             <div className="header-search-wrap">
               <h1 className="header__title"><Link to="/">To-Do List</Link></h1>
-              <Search searchTasks={this.searchTasks}/>
+              <Search searchTasks={this.searchTasks} />
             </div>
-            <ProgressBar allCategories={this.props.categoriesNumber} completedCategories={this.props.completedCategories}/>
+            <ProgressBar allCategories={this.props.categoriesNumber}
+                         completedCategories={this.props.completedCategories} />
           </div>
-          <AddItem addNewCategory = {this.props.addNewCategory} placeholder="Enter category title"/>
+          <AddItem addNewCategory={this.props.addNewCategory} placeholder="Enter category title" />
           <div className="main">
-            <MainRoute/>
-            <CategoryRoute/>
-            {
-              /*
-
-                <DelCategoryRoute setCategoryNumber={this.setCategoryNumber} data={this.props.categories} />
-                <EditTaskRoute checkCategoryStatus={this.checkCategoryStatus} data={this.props.categories}/>
-
-               */
-            }
+            <EditTaskRoute checkCategoryStatus={this.checkCategoryStatus} />
+            <MainRoute />
+            <CategoryRoute />
           </div>
         </div>
       </Router>
-    )
+    );
   }
 }
 
@@ -61,5 +54,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-	addNewCategory
+  addNewCategory,
 })(TodoList);
